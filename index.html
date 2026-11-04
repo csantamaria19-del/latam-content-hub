@@ -1,0 +1,804 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>LATAM Content Hub</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27%3E%3Crect x=%274%27 y=%274%27 width=%278%27 height=%278%27 fill=%27%23ffffff%27/%3E%3C/svg%3E">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Figtree:wght@300;400;500;600;700&display=swap">
+</head>
+<body>
+<style>
+  :root {
+    --ink: #111111;
+    --ink-2: #161616;
+    --white: #FFFFFF;
+    --regent: #51748B;
+    --regent-light: #6b90a8;
+    --oceania: #14284B;
+    --oceania-2: #0F1F3A;
+    --oceania-accent: #C9A15B;
+    --oceania-accent-light: #DDB877;
+    --line: rgba(255,255,255,0.10);
+    --text-dim: rgba(255,255,255,0.55);
+    --text-faint: rgba(255,255,255,0.35);
+    --font-serif: 'Cormorant', Georgia, 'Times New Roman', serif;
+    --font-sans: 'Jost', 'Futura', 'Century Gothic', system-ui, sans-serif;
+    color-scheme: dark;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: var(--ink); }
+  body { background: var(--ink); color: var(--white); font-family: var(--font-sans); min-height: 100vh; -webkit-font-smoothing: antialiased; }
+  a { text-decoration: none; color: inherit; }
+  a:focus-visible { outline: 2px solid var(--regent-light); outline-offset: -2px; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes lineGrow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+
+  /* ---------- Header ---------- */
+  .hub-header {
+    position: relative;
+    padding: 72px 80px 56px;
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hub-header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 22% 40%, rgba(81,116,139,0.16) 0%, transparent 55%),
+      radial-gradient(ellipse at 82% 70%, rgba(201,161,91,0.10) 0%, transparent 55%);
+    pointer-events: none;
+  }
+  .header-eyebrow {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--regent-light); margin-bottom: 28px;
+  }
+  .header-brand { display: flex; align-items: flex-end; justify-content: space-between; gap: 48px; flex-wrap: wrap; }
+  .wordmark-top {
+    font-family: var(--font-serif); font-size: clamp(48px, 6.5vw, 88px); font-weight: 300;
+    letter-spacing: 0.04em; line-height: 0.95; color: var(--white); text-wrap: balance;
+  }
+  .wordmark-sub {
+    font-size: clamp(10px, 1.2vw, 13px); font-weight: 400; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--text-dim); margin-top: 14px;
+  }
+  .header-meta { text-align: right; padding-bottom: 6px; }
+  .header-tagline {
+    font-family: var(--font-serif); font-size: clamp(16px, 2vw, 22px); font-style: italic; font-weight: 400;
+    color: rgba(255,255,255,0.5); letter-spacing: 0.03em;
+  }
+  .header-tagline em { color: var(--white); font-style: inherit; }
+  .header-divider {
+    width: 48px; height: 1px; background: var(--regent); margin: 16px 0 16px auto;
+    transform-origin: right; animation: lineGrow 1s 0.6s ease both;
+  }
+  .header-hub-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-faint); }
+
+  /* ---------- Intro ---------- */
+  .hub-intro {
+    padding: 52px 80px 44px;
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 48px; flex-wrap: wrap;
+    border-bottom: 1px solid var(--line);
+    animation: fadeUp 0.8s 0.15s ease both;
+  }
+  .intro-text { max-width: 580px; }
+  .intro-headline {
+    font-family: var(--font-serif); font-size: clamp(28px, 3.4vw, 42px); font-weight: 300; line-height: 1.2;
+    letter-spacing: 0.01em; margin-bottom: 18px; text-wrap: balance;
+  }
+  .intro-body { font-size: 14px; font-weight: 300; line-height: 1.75; color: var(--text-dim); letter-spacing: 0.02em; }
+  .intro-body + .intro-body { margin-top: 10px; }
+  .intro-stats { display: flex; gap: 48px; padding-top: 8px; flex-shrink: 0; }
+  .stat { text-align: right; }
+  .stat-number { font-family: var(--font-serif); font-size: 40px; font-weight: 300; line-height: 1; font-variant-numeric: tabular-nums; }
+  .stat-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-faint); margin-top: 6px; }
+
+  /* ---------- Jump nav ---------- */
+  .hub-nav {
+    display: flex; gap: 0; border-bottom: 1px solid var(--line); overflow-x: auto;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+  .hub-nav a {
+    padding: 18px 28px; font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--text-faint); border-right: 1px solid var(--line); white-space: nowrap; transition: color 0.3s, background 0.3s;
+  }
+  .hub-nav a:first-child { padding-left: 80px; }
+  .hub-nav a:hover { color: var(--white); background: rgba(255,255,255,0.03); }
+  .hub-nav a[data-brand="oceania"]:hover { color: var(--oceania-accent-light); }
+
+  /* ---------- Sections ---------- */
+  .section { scroll-margin-top: 12px; }
+  .section-head {
+    padding: 56px 80px 28px; display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+  }
+  .section-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 14px; }
+  .section-title { font-family: var(--font-serif); font-size: clamp(30px, 3.6vw, 48px); font-weight: 300; line-height: 1; letter-spacing: 0.03em; }
+  .section-title .reg { font-size: 0.4em; vertical-align: super; margin-left: 4px; color: var(--text-dim); }
+  .section-note { max-width: 380px; font-size: 12px; font-weight: 300; line-height: 1.7; color: var(--text-dim); letter-spacing: 0.03em; text-align: right; }
+
+  .cards-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); }
+  .cards-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .cards-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 1200px) { .cards-grid, .cards-grid.cols-3 { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px)  { .cards-grid, .cards-grid.cols-3, .cards-grid.cols-2 { grid-template-columns: 1fr; } }
+
+  .content-card {
+    position: relative; display: flex; flex-direction: column;
+    padding: 40px 36px 36px;
+    border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    transition: background 0.3s ease; overflow: hidden;
+  }
+  .content-card:hover { background: rgba(255,255,255,0.04); }
+  .content-card:hover .card-arrow { opacity: 1; transform: translate(0,0); }
+  .content-card:hover .card-accent-line { transform: scaleX(1); }
+  .content-card:hover .card-number { color: var(--accent-light); }
+  .card-accent-line {
+    position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--accent);
+    transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
+  }
+  .card-number { font-family: var(--font-serif); font-size: 13px; letter-spacing: 0.08em; color: rgba(255,255,255,0.22); margin-bottom: 28px; transition: color 0.3s; }
+  .card-icon { width: 34px; height: 34px; margin-bottom: 18px; opacity: 0.6; }
+  .card-title { font-family: var(--font-serif); font-size: clamp(22px, 2.1vw, 27px); font-weight: 400; letter-spacing: 0.02em; line-height: 1.1; margin-bottom: 12px; text-wrap: balance; }
+  .card-desc { font-size: 12px; font-weight: 300; line-height: 1.7; letter-spacing: 0.04em; color: rgba(255,255,255,0.45); margin-bottom: 24px; }
+  .card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 26px; margin-top: auto; }
+  .tag {
+    font-size: 9px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.35); border: 1px solid rgba(255,255,255,0.14); padding: 4px 9px;
+  }
+  .card-arrow {
+    display: flex; align-items: center; gap: 10px; font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent-light); opacity: 0; transform: translate(-8px, 4px); transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .card-arrow::after { content: ''; display: inline-block; width: 24px; height: 1px; background: var(--accent-light); }
+  a.tag { text-transform: none; letter-spacing: 0.06em; font-size: 10px; }
+  a.tag:hover { color: var(--white); }
+
+  .card-featured { background: var(--accent); border-color: transparent; }
+  .card-featured:hover { background: var(--accent-hover); }
+  .card-featured .card-number { color: rgba(255,255,255,0.45); }
+  .card-featured .card-desc { color: rgba(255,255,255,0.7); }
+  .card-featured .tag { border-color: rgba(255,255,255,0.28); color: rgba(255,255,255,0.65); }
+  .card-featured .card-arrow { color: rgba(255,255,255,0.85); }
+  .card-featured .card-arrow::after { background: rgba(255,255,255,0.75); }
+  .card-featured .card-accent-line { display: none; }
+
+  /* Brand scopes */
+  .brand-regent { --accent: var(--regent); --accent-light: var(--regent-light); --accent-hover: #5e849e; }
+  /* Oceania: light treatment per the Oceania Content Studio design */
+  .brand-oceania {
+    --oci-navy: #001D32; --oci-teal: #1E4859; --oci-copper: #A36A36; --oci-copper-2: #AC4A1C;
+    --oci-grey: #DBD6CF; --oci-ground: #EDEBE7; --oci-line: rgba(0,29,50,0.10);
+    --oci-serif: 'EB Garamond', Garamond, Georgia, serif;
+    --oci-sans: 'Figtree', 'Helvetica Neue', Arial, sans-serif;
+    background: var(--oci-ground); color: var(--oci-navy); font-family: var(--oci-sans);
+    border-top: 3px solid var(--oci-navy);
+  }
+  .oci-topbar {
+    background: #FFFFFF; height: 54px; padding: 0 80px; display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid var(--oci-line);
+  }
+  .oci-topbar-left { display: flex; align-items: center; gap: 10px; }
+  .oci-topbar-title { font-family: var(--oci-serif); font-size: 18px; font-weight: 500; color: var(--oci-navy); }
+  .oci-topbar-rule { width: 26px; height: 1px; background: var(--oci-copper); opacity: 0.8; }
+  .oci-topbar-brand { font-size: 10px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; color: var(--oci-copper); }
+  .oci-topbar-year { font-size: 11px; font-weight: 500; letter-spacing: 0.5px; color: rgba(0,29,50,0.25); }
+
+  .oci-head { padding: 40px 80px 28px; display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+  .oci-eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .oci-eyebrow-rule { width: 26px; height: 1px; background: var(--oci-copper); }
+  .oci-eyebrow span { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 600; color: var(--oci-copper); }
+  .oci-title { font-family: var(--oci-serif); font-size: 34px; font-weight: 500; line-height: 1.1; color: var(--oci-navy); margin: 0 0 8px; }
+  .oci-title .reg { font-size: 0.4em; vertical-align: super; margin-left: 4px; color: var(--oci-copper); }
+  .oci-lede { font-size: 14px; line-height: 1.7; color: var(--oci-teal); max-width: 480px; margin: 0; }
+  .oci-note { max-width: 360px; font-size: 12px; line-height: 1.7; color: var(--oci-teal); text-align: right; margin: 0; }
+
+  .oci-grid { padding: 0 80px 48px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+  .oci-card {
+    display: flex; flex-direction: column; position: relative; overflow: hidden;
+    background: #FFFFFF; border: 1px solid var(--oci-line); border-radius: 2px; padding: 28px 28px 22px;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .oci-card:hover { border-color: var(--oci-copper); box-shadow: 0 2px 20px rgba(0,29,50,0.09); }
+  .oci-card:focus-visible { outline: 2px solid var(--oci-copper); outline-offset: 2px; }
+  .oci-rail { position: absolute; top: 0; left: 0; width: 2px; height: 100%; background: var(--oci-copper); }
+  .oci-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 18px; }
+  .oci-tile { width: 42px; height: 42px; background: var(--oci-navy); border-radius: 2px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .oci-tile.teal { background: var(--oci-teal); }
+  .oci-tile svg { width: 19px; height: 19px; }
+  .oci-pill {
+    font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--oci-copper);
+    background: rgba(163,106,54,0.10); padding: 3px 8px; border-radius: 1px;
+  }
+  .oci-card h3 { font-family: var(--oci-serif); font-size: 20px; font-weight: 500; color: var(--oci-navy); margin: 0 0 5px; }
+  .oci-card p { font-size: 13px; line-height: 1.65; color: var(--oci-teal); margin: 0 0 18px; }
+  .oci-open {
+    margin-top: auto; display: flex; align-items: center; gap: 5px; width: fit-content;
+    font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--oci-navy);
+    border-bottom: 1px solid var(--oci-copper); padding-bottom: 2px;
+  }
+  .oci-open svg { width: 10px; height: 10px; }
+  .oci-footline {
+    padding: 18px 80px; border-top: 1px solid rgba(163,106,54,0.25);
+    font-family: var(--oci-serif); font-size: 12px; font-style: italic; letter-spacing: 0.3px; color: rgba(0,29,50,0.5);
+  }
+  .oci-footline span { color: var(--oci-copper); font-style: normal; }
+  @media (max-width: 900px) {
+    .oci-topbar, .oci-head, .oci-grid, .oci-footline { padding-left: 32px; padding-right: 32px; }
+    .oci-note { text-align: left; }
+  }
+  .hub-nav a[data-brand="oceania"]:hover { color: #DDB877; }
+  @media (min-width: 641px) and (max-width: 1200px) { .tours-grid > :last-child { grid-column: 1 / -1; } }
+  /* Request card: whole card opens the request form; the brand form links sit above that layer */
+  a.card-title.stretch { display: block; }
+  a.card-title.stretch::after { content: ''; position: absolute; inset: 0; }
+  .form-links { position: relative; z-index: 1; display: grid; gap: 8px; margin: -8px 0 26px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.22); }
+  .form-links-label { font-size: 9px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.65); }
+  .form-links-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.75); }
+  .form-links-row strong { font-weight: 500; color: var(--white); min-width: 64px; }
+  .form-links a { color: var(--white); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(255,255,255,0.45); }
+  .form-links a:hover { text-decoration-color: var(--white); }
+  .brand-shared { --accent: #8A8F96; --accent-light: #B5BAC1; --accent-hover: #9aa0a7; }
+
+  /* ---------- New this month ---------- */
+  .brand-new { --accent: var(--regent); --accent-light: var(--regent-light); --accent-hover: #5e849e; }
+  .brand-new .content-card.oci { --accent: #A36A36; --accent-light: #DDB877; --accent-hover: #b47a44; }
+  .new-badge { display:inline-block; font-size:9px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:#111; background:var(--regent-light); padding:4px 8px; margin-left:12px; vertical-align:middle; }
+  .brand-new .card-number { color: var(--accent-light); opacity:.85; }
+  .brand-new .content-card.oci .card-number { color:#DDB877; }
+  .brand-new .card-featured { background: var(--accent); }
+  .brand-new .card-featured .card-number { color: rgba(255,255,255,.8); }
+
+  /* ---------- Footer ---------- */
+  .hub-footer {
+    padding: 40px 80px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+    border-top: 1px solid var(--line);
+  }
+  .footer-brand { font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
+  .footer-brand strong { color: rgba(255,255,255,0.45); font-weight: 500; }
+  .color-dots { display: flex; gap: 8px; align-items: center; }
+  .color-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .footer-note { font-size: 10px; font-weight: 300; letter-spacing: 0.12em; color: rgba(255,255,255,0.25); }
+
+  @media (max-width: 900px) {
+    .hub-header, .hub-intro, .section-head, .hub-footer { padding-left: 32px; padding-right: 32px; }
+    .hub-nav a:first-child { padding-left: 32px; }
+    .header-meta, .stat, .section-note { text-align: left; }
+    .header-divider { margin-left: 0; transform-origin: left; }
+    .intro-stats { gap: 32px; }
+  }
+</style>
+
+<!-- HEADER -->
+<header class="hub-header">
+  <p class="header-eyebrow">Latam GSA Box &nbsp;·&nbsp; Regent Seven Seas Cruises &nbsp;·&nbsp; Oceania Cruises</p>
+  <div class="header-brand">
+    <div class="brand-wordmark">
+      <div class="wordmark-top">LATAM Content Hub</div>
+      <div class="wordmark-sub">Sales Tools for Travel Partners and GSAs</div>
+    </div>
+    <div class="header-meta">
+      <div class="header-tagline"><em>Every asset,</em> one link away</div>
+      <div class="header-divider"></div>
+      <div class="header-hub-label">Latin America and Caribbean</div>
+    </div>
+  </div>
+</header>
+
+<!-- INTRO -->
+<div class="hub-intro">
+  <div class="intro-text">
+    <div class="intro-headline">Brochures, creative, ship facts and forms for both brands, always the current version.</div>
+  </div>
+  <div class="intro-stats">
+    <div class="stat"><div class="stat-number">2</div><div class="stat-label">Brands</div></div>
+    <div class="stat"><div class="stat-number">18</div><div class="stat-label">Box Folders</div></div>
+    <div class="stat"><div class="stat-number">2</div><div class="stat-label">Languages</div></div>
+  </div>
+</div>
+
+<!-- JUMP NAV -->
+<nav class="hub-nav" aria-label="Sections">
+  <a href="#new">New This Month</a>
+  <a href="#regent">Regent Seven Seas</a>
+  <a href="#oceania" data-brand="oceania">Oceania Cruises</a>
+  <a href="#escalations">Escalations</a>
+  <a href="#shiptours">Ship Tours</a>
+  <a href="#shared">Both Brands</a>
+</nav>
+
+<!-- ============ NEW THIS MONTH ============ -->
+<section class="section brand-new" id="new">
+  <div class="section-head">
+    <div>
+      <div class="section-eyebrow">Updated November 1, 2026</div>
+      <h2 class="section-title">New This Month<span class="new-badge">16 items</span></h2>
+    </div>
+    <p class="section-note">What arrived from Regent and Oceania trade marketing since the September refresh. Offer dates are the brands' own; check the combinability grids before quoting. / Lo que llegó de marketing de ambas marcas desde la actualización de septiembre.</p>
+  </div>
+  <div class="cards-grid cols-3">
+
+    <a class="content-card card-featured" href="https://ncl.app.box.com/s/b0rkzuan1i1qg9nr264b814w5psazh27/folder/429906633354" target="_blank" rel="noopener">
+
+      <div class="card-number">Regent · Early Access November 1 to 16</div>
+      <div class="card-title">The Black Friday Collection<br>Toolkit</div>
+      <div class="card-desc">Up to 40% off select suite categories plus up to US$500 shipboard credit per suite. Early Access opens November 1 on a select list of sailings (the list was updated October 26 and 30, and some sailings are closed for certain regions), the second release follows November 17, and bookings close December 1. Open in INT USD and BR BRL. Regent's full toolkit: the LATAM and Brazil flyer, A3 and A4 window posters, the PowerPoint slide, social carousels and stories, digital banners, lock-ups and hero images. / Hasta 40% de descuento más hasta US$500 de crédito a bordo por suite. Early Access desde el 1 de noviembre; reservas hasta el 1 de diciembre.</div>
+      <div class="card-tags"><span class="tag">Toolkit</span><span class="tag">Promo</span><span class="tag">LATAM flyer</span></div>
+      <div class="card-arrow">Open the toolkit</div>
+    </a>
+    <a class="content-card" href="https://ncl.box.com/s/tpz9lqgv57dzjdh2cl4bdpgxqdljipgs" target="_blank" rel="noopener">
+      <div class="card-accent-line"></div>
+      <div class="card-number">Regent · updated October 29</div>
+      <div class="card-title">Black Friday Collection<br>Updated Flyers</div>
+      <div class="card-desc">Regent trade marketing refreshed the Black Friday toolkit flyers to match the latest Early Access sailing list (one sailing removed and several discounts changed). Use this version rather than any flyer downloaded before October 29. / Flyers actualizados del Black Friday Collection con la lista más reciente de salidas; use esta versión y no los flyers descargados antes del 29 de octubre.</div>
+      <div class="card-tags"><span class="tag">Toolkit</span><span class="tag">Flyers</span><span class="tag">Updated</span></div>
+      <div class="card-arrow">Open in Box</div>
+    </a>
+    <a class="content-card" href="https://ncl.box.com/s/ooqkk357mtzzzs2ircomqlr14s2clggu" target="_blank" rel="noopener">
+      <div class="card-accent-line"></div>
+      <div class="card-number">Regent · ready to send</div>
+      <div class="card-title">Northern Europe 2027<br>Email and Social Copy</div>
+      <div class="card-desc">Lift and leverage copy for your advisors: a client email and a social post with the animated GIF, in Spanish and Portuguese with the English original. Copy, paste, add your sailing links and send. / Texto de correo y publicación para redes, en español y portugués, listo para copiar y enviar.</div>
+      <div class="card-tags"><span class="tag">Español</span><span class="tag">Português</span><span class="tag">GIF</span></div>
+      <div class="card-arrow">Open in Box</div>
+    </a>
+    <a class="content-card" href="https://ncl.box.com/s/erbrhzi3n1rs4iak0l93ngvg7rw3q7sp" target="_blank" rel="noopener">
+      <div class="card-accent-line"></div>
+      <div class="card-number">Regent · Oct 1 to Dec 31</div>
+      <div class="card-title">Single Supplement<br>Offers</div>
+      <div class="card-desc">0% to 50% single supplement on select Mediterranean, Caribbean, Northern Europe and South Pacific voyages across all seven ships, with the voyage list. Editable and print versions of the flyer. / Suplemento individual de 0% a 50% en viajes seleccionados, del 1 de octubre al 31 de diciembre.</div>
+      <div class="card-tags"><span class="tag">Flyer</span><span class="tag">Solo</span><span class="tag">Editable</span></div>
+      <div class="card-arrow">Open in Box</div>
+    </a>
+    <a class="content-card" href="https://ncl.box.com/s/a59axz0ivo7c0wjx737w8zgq8j9t4ljs" target="_blank" rel="noopener">
+      <div class="card-accent-line"></div>
+      <div class="card-number">Regent</div>
+      <div class="card-title">35th Anniversary<br>Toolkit</div>
+      <div class="card-desc">Creative for Regent's 35th anniversary celebration. The anniversary shipboard credit stays valid until sail date and can be combined with the Europe Edition where applicable; the percentage discount has expired. / Material del 35 aniversario; el crédito a bordo sigue vigente hasta la fecha de zarpe.</div>
+      <div class="card-tags"><span class="tag">Toolkit</span><span class="tag">Anniversary</span></div>
+      <div class="card-arrow">Open the toolkit</div>
+    </a>
+    <a class="content-card" href="https://ncl.app.box.com/s/qtpm2zuokv4p2dw36p0342hf2fh8zomj" target="_blank" rel="noopener">
+      <div class="card-accent-line"></div>
+      <div class="card-number">Regent</div>
+      <div class="card-title">New Season Launch<br>Toolkit</div>
+      <div class="card-desc">Assets for the latest season launch from Regent international marketing, for your newsletters, social channels and advisor updates. / Material de lanzamiento de la nueva temporada para boletines y redes.</div>
+      <div class="card-tags"><span class="tag">Toolkit</span><span class="tag">New itineraries</span></div>
+      <div class="card-arrow">Open the toolkit</div>
+    </a>
+    <a class="content-card" href="https://ncl.box.com/s/ko696wgymq8d0z42rxzu6dpkiyf4ah1j" target="_blank" rel="noopener">
+      <div class="card-accent-line"></div>
+      <div class="card-number">Regent</div>
+      <div class="card-title">Concierge Collection<br>Toolkit</div>
+      <div class="card-desc">Pre and post cruise hotel program with GHA Discovery. Toolkit plus the program page at rssc.com/concierge-collection. Rocky Mountaineer is sold out for 2027 and stays on the site for reference only. / Programa de hoteles pre y post crucero con GHA Discovery.</div>
+      <div class="card-tags"><span class="tag">Toolkit</span><span class="tag">Hotels</span><span class="tag">GHA</span></div>
+      <div class="card-arrow">Open the toolkit</div>
+    </a>
+    <a class="content-card" href="https://ncl.box.com/s/b0rkzuan1i1qg9nr264b814w5psazh27" target="_blank" rel="noopener">
+      <div class="card-accent-line"></div>
+      <div class="card-number">Regent · sales tools</div>
+      <div class="card-title">October Sales Tool Summary and<br>Immediate Confirmation Rates</div>
+      <div class="card-desc">The one page October summary of every Regent sales tool with links embedded, in the LATAM and Brazil edition, plus the September update of the Immediate Confirmation Rates flyer. Both in the Sales Tools folder. / Resumen de herramientas de venta de octubre y el flyer de tarifas de confirmación inmediata, en la carpeta Sales Tools.</div>
+      <div class="card-tags"><span class="tag">PDF</span><span class="tag">Sales Tools</span></div>
+      <div class="card-arrow">Open Creative Assets</div>
+    </a>
+    <a class="content-card card-featured oci" href="https://ncl.app.box.com/s/gqxcz21f81uyhmze4n5nkdg2vm796nfw/folder/429906124478" target="_blank" rel="noopener">
+
+      <div class="card-number">Oceania · until November 3</div>
+      <div class="card-title">Caribbean Winter Escape<br>Up to 50% off plus $250 SBC</div>
+      <div class="card-desc">Up to 50% savings plus US$250 shipboard credit on 17 select Caribbean sailings this winter, code ZZ, on top of Your World Included. The toolkit has the LATAM voyage flyers (print and editable), the Top 10 Reasons to Sail the Caribbean flyer, co-brand and share, digital banners, social tiles and videos; banners, tiles and videos are in English. / Hasta 50% de ahorro más US$250 de crédito a bordo en salidas seleccionadas del Caribe, código ZZ, hasta el 3 de noviembre. Flyers LATAM, banners, piezas para redes y videos.</div>
+      <div class="card-tags"><span class="tag">Toolkit</span><span class="tag">Caribbean</span><span class="tag">LATAM flyer</span></div>
+      <div class="card-arrow">Open the toolkit</div>
+    </a>
+    <a class="content-card oci" href="https://ncl.box.com/s/gqxcz21f81uyhmze4n5nkdg2vm796nfw" target="_blank" rel="noopener">
+      <div class="card-accent-line"></div>
+      <div class="card-number">Oceania · until December 31</div>
+      <div class="card-title">Solo Traveller<br>Fares</div>
+      <div class="card-desc">Up to 50% off single supplement fares on select sailings and categories, plus Your World Included amenities. / Hasta 50% de descuento en el suplemento individual en salidas seleccionadas, hasta el 31 de diciembre.</div>
+      <div class="card-tags"><span class="tag">Promo</span><span class="tag">Solo</span></div>
+      <div class="card-arrow">Open in Box</div>
+    </a>
+    <a class="content-card oci" href="https://ncl.box.com/s/gqxcz21f81uyhmze4n5nkdg2vm796nfw" target="_blank" rel="noopener">
+      <div class="card-accent-line"></div>
+      <div class="card-number">Oceania · until November 3</div>
+      <div class="card-title">Up to 50% off<br>Mediterranean Voyages</div>
+      <div class="card-desc">Spring and summer 2027 Mediterranean sailings with up to 50% off, shipboard credit and the choice of wine and beer by the glass or shore excursion credit. / Mediterráneo 2027 con hasta 50% de descuento y crédito a bordo.</div>
+      <div class="card-tags"><span class="tag">Promo</span><span class="tag">Mediterranean</span><span class="tag">2027</span></div>
+      <div class="card-arrow">Open in Box</div>
+    </a>
+    <a class="content-card oci" href="https://ncl.box.com/s/gqxcz21f81uyhmze4n5nkdg2vm796nfw" target="_blank" rel="noopener">
+      <div class="card-accent-line"></div>
+      <div class="card-number">Oceania · new ship</div>
+      <div class="card-title">Aurelia Reserve<br>Collection Toolkit</div>
+      <div class="card-desc">The Reserve Collection suites on Oceania Aurelia: renderings, inclusions and copy to sell the top of the ship. Sits next to the Aurelia toolkit, images and voyage maps already in Box. / Las suites Reserve Collection de Oceania Aurelia: renders, inclusiones y textos.</div>
+      <div class="card-tags"><span class="tag">Toolkit</span><span class="tag">Aurelia</span><span class="tag">Suites</span></div>
+      <div class="card-arrow">Open in Box</div>
+    </a>
+    <a class="content-card oci" href="https://ncl.box.com/s/gqxcz21f81uyhmze4n5nkdg2vm796nfw" target="_blank" rel="noopener">
+      <div class="card-accent-line"></div>
+      <div class="card-number">Oceania · brochures and video</div>
+      <div class="card-title">Americas Collection e-Brochure,<br>Northern Europe Video, Joy of Traveling Well</div>
+      <div class="card-desc">The 2026 to 2029 Americas Collection e-brochure, the new Northern Europe destination video and the refreshed Joy of Traveling Well brand toolkit. / El e-brochure Americas Collection 2026 a 2029, el nuevo video del Norte de Europa y el toolkit de marca The Joy of Traveling Well.</div>
+      <div class="card-tags"><span class="tag">e-Brochure</span><span class="tag">Video</span><span class="tag">Brand</span></div>
+      <div class="card-arrow">Open in Box</div>
+    </a>
+    <a class="content-card oci" href="https://ncl.box.com/s/gqxcz21f81uyhmze4n5nkdg2vm796nfw" target="_blank" rel="noopener">
+      <div class="card-accent-line"></div>
+      <div class="card-number">Oceania · November 4 to 17</div>
+      <div class="card-title">Black Friday Sale<br>Early Access</div>
+      <div class="card-desc">Up to 50% off on 70 select sailings, combined with Your World Included. Early Access runs November 4 to 17 and the full Black Friday list follows November 18. The brand toolkit has the flyer, banners and social pieces in English; email and Insider Connect assets are still to come. / Hasta 50% de descuento en 70 salidas seleccionadas, del 4 al 17 de noviembre; la lista completa de Black Friday sigue el 18 de noviembre.</div>
+      <div class="card-tags"><span class="tag">Promo</span><span class="tag">Black Friday</span><span class="tag">Early Access</span></div>
+      <div class="card-arrow">Open in Box</div>
+    </a>
+    <a class="content-card oci" href="https://ncl.box.com/s/gqxcz21f81uyhmze4n5nkdg2vm796nfw" target="_blank" rel="noopener">
+      <div class="card-accent-line"></div>
+      <div class="card-number">Oceania · from November 2</div>
+      <div class="card-title">Oceania Club<br>Milestone Credit</div>
+      <div class="card-desc">The Free Cruise benefit for Platinum, Diamond and President's Circle members becomes a Milestone Credit worth 14 cruise days, usable on any sailing, category and length, combinable with promotions, with hotels, transfers and airfare allowed in the same booking. Notice in English, Spanish and Portuguese is in Current Campaigns; the brand FAQ follows. / El beneficio de Crucero Gratis pasa a ser un Crédito de Hito equivalente a 14 días de crucero. Aviso en inglés, español y portugués.</div>
+      <div class="card-tags"><span class="tag">Loyalty</span><span class="tag">Español</span><span class="tag">Português</span></div>
+      <div class="card-arrow">Open in Box</div>
+    </a>
+    <a class="content-card oci" href="https://ncl.box.com/s/gqxcz21f81uyhmze4n5nkdg2vm796nfw" target="_blank" rel="noopener">
+      <div class="card-accent-line"></div>
+      <div class="card-number">Oceania · toolkit refreshed</div>
+      <div class="card-title">Oceania Sonata<br>Toolkit</div>
+      <div class="card-desc">Refreshed toolkit for the 2027 to 2028 inaugural season: voyage flyers, the Sonata interactive experience and deck plans. Featured sailings include Panama Canal Coastlines (Los Angeles to Miami, January 6, 2028) and Transatlantic Aspirations (Miami to Barcelona, March 18, 2028). / Toolkit renovado de Oceania Sonata para su temporada inaugural 2027 a 2028.</div>
+      <div class="card-tags"><span class="tag">Toolkit</span><span class="tag">Sonata</span><span class="tag">2027 to 2028</span></div>
+      <div class="card-arrow">Open in Box</div>
+    </a>
+  </div>
+</section>
+<!-- /NEW THIS MONTH -->
+
+<!-- ============ REGENT ============ -->
+<section class="section brand-regent" id="regent">
+  <div class="section-head">
+    <div>
+      <div class="section-eyebrow">Ultra-luxury, fully all-inclusive</div>
+      <h2 class="section-title">Regent Seven Seas Cruises<span class="reg">®</span></h2>
+    </div>
+  </div>
+  <div class="cards-grid cols-3">
+
+    <a class="content-card" href="https://ncl.box.com/s/0omlndd4cq4vy9ck0g4prw2nqt4k8xnt" target="_blank" rel="noopener">
+      <div class="card-accent-line"></div>
+      <div class="card-number">01</div>
+      <svg class="card-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="18" cy="18" r="14"/><path d="M18 4c-4 5-4 23 0 28M18 4c4 5 4 23 0 28M4 18h28"/></svg>
+      <div class="card-title">Brand</div>
+      <div class="card-desc">Logos, taglines, the April 2026 Quick Brand Guidelines, the condensed international guidelines, the January 2025 crib sheet and channel collateral from the 2025 rebrand.</div>
+      <div class="card-tags"><span class="tag">Logos</span><span class="tag">Guidelines</span><span class="tag">2025 Rebrand</span></div>
+      <div class="card-arrow">Open in Box</div>
+    </a>
+
+    <a class="content-card card-featured" href="https://ncl.box.com/s/en3f2k9zvvzgrnidr8tu9d84zmnxl8b9" target="_blank" rel="noopener">
+      <div class="card-number">02</div>
+      <svg class="card-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6h12a4 4 0 0 1 4 4v20a3 3 0 0 0-3-3H4z"/><path d="M32 6H20a4 4 0 0 0-4 4v20a3 3 0 0 1 3-3h13z"/></svg>
+      <div class="card-title">Brochures &amp;<br>Lookbooks</div>
+      <div class="card-desc">Voyage Collection brochure for LATAM, Voyages to Explore 2025 to 2027, the 2027 and 2029 World Cruise ebooks, Legendary Journeys, Unrivaled at Sea and the Seven Seas Prestige lookbook.</div>
+      <div class="card-tags"><span class="tag">PDF</span><span class="tag">LATAM</span><span class="tag">Prestige</span></div>
+      <div class="card-arrow">Open in Box</div>
+    </a>
+
+    <a class="content-card" href="https://ncl.box.com/s/bp6jp613660abaahdhyfabc9xk5fvw4c" target="_blank" rel="noopener">
+      <div class="card-accent-line"></div>
+      <div class="card-number">03</div>
+      <svg class="card-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="32" height="22" rx="1"/><line x1="12" y1="26" x2="24" y2="26"/><line x1="18" y1="26" x2="18" y2="32"/><line x1="12" y1="32" x2="24" y2="32"/></svg>
+      <div class="card-title">Presentations</div>
+      <div class="card-desc">The Regent consumer deck and the Regent trade presentation, both in Spanish, plus the 2026 to 2027 Groups Guide in English and Spanish. The decks are large files; open in Box rather than downloading on the go.</div>
+      <div class="card-tags"><span class="tag">PowerPoint</span><span class="tag">Consumer</span><span class="tag">Trade</span></div>
+      <div class="card-arrow">Open in Box</div>
+    </a>
+
+    <a class="content-card" href="https://ncl.box.com/s/kir3se1rhcgfu59njrb596whuwiff8kt" target="_blank" rel="noopener">
+      <div class="card-accent-line"></div>
+      <div class="card-number">04</div>
+      <svg class="card-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 22h30l-4 8H7z"/><path d="M8 22V12h20v10"/><path d="M14 12V6h8v6"/><line x1="3" y1="30" x2="33" y2="30"/></svg>
+      <div class="card-title">Ship Facts</div>
+      <div class="card-desc">Fleet at a glance, deck plans for all seven ships, the 2026 fleet calendar, suite fact flyers, restaurant and lounge capacities, Culinary Arts Kitchen classes, the Seven Seas Voyager transformation and the in-suite amenities fact sheet.</div>
+      <div class="card-tags"><span class="tag">Fleet</span><span class="tag">Deck Plans</span><span class="tag">Suites</span></div>
+      <div class="card-arrow">Open in Box</div>
+    </a>
+
+    <a class="content-card" href="https://ncl.box.com/s/b0rkzuan1i1qg9nr264b814w5psazh27" target="_blank" rel="noopener">
+      <div class="card-accent-line"></div>
+      <div class="card-number">05</div>
+      <svg class="card-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="30" height="26" rx="1"/><path d="M3 24l9-9 7 7 5-5 9 9"/><circle cx="26" cy="12" r="2.5"/></svg>
+      <div class="card-title">Creative Assets &amp;<br>Toolkits</div>
+      <div class="card-desc">Current Campaigns (Black Friday Collection 2026, The Europe Edition 2027, Single Supplement, Prestige, Explorer Class Reimagined, Quiet Luxury of Europe, Legendary Journey), plus Images, Videos, Flyers and Promotions, and Sales Tools such as the October sales tool summary, Immediate Confirmation Rates, value comparisons, Upgrade Advantage, Reconnect on Regent and the Blueprint to Unrivaled Profitability.</div>
+      <div class="card-tags"><span class="tag">Campaigns</span><span class="tag">Images</span><span class="tag">Video</span></div>
+      <div class="card-arrow">Open in Box</div>
+    </a>
+
+    <a class="content-card" href="https://ncl.box.com/s/9z3ku5wjkapzdn2cpm6svzibgye731zp" target="_blank" rel="noopener">
+      <div class="card-accent-line"></div>
+      <div class="card-number">06</div>
+      <svg class="card-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="4" width="26" height="28" rx="1"/><polyline points="11,18 15,22 25,12"/></svg>
+      <div class="card-title">Forms</div>
+      <div class="card-desc">Formulario de Solicitud de Grupo, group dining, group service and cocktail party forms, the Group Sales Program, group dining and Culinary Arts Kitchen guides in English and Spanish, visitor requests for ship inspections, and the Bon Voyage gift form.</div>
+      <div class="card-tags"><span class="tag">Groups</span><span class="tag">Inspections</span><span class="tag">Gifts</span></div>
+      <div class="card-arrow">Open in Box</div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ============ OCEANIA ============ -->
+<section class="section brand-oceania" id="oceania">
+  <div class="oci-topbar">
+    <div class="oci-topbar-left">
+      <span class="oci-topbar-title">Content Hub</span>
+      <div class="oci-topbar-rule"></div>
+      <span class="oci-topbar-brand">Oceania Cruises</span>
+    </div>
+    <span class="oci-topbar-year">2026</span>
+  </div>
+
+  <div class="oci-head">
+    <div>
+      <div class="oci-eyebrow"><div class="oci-eyebrow-rule"></div><span>Choose a Folder</span></div>
+      <h2 class="oci-title">Oceania Cruises<span class="reg">&reg;</span></h2>
+    </div>
+  </div>
+
+  <div class="oci-grid">
+
+    <a class="oci-card" href="https://ncl.box.com/s/nnfmj1wfky3bbabwdiew62m32u1ktd6j" target="_blank" rel="noopener">
+      <div class="oci-rail"></div>
+      <div class="oci-card-top">
+        <div class="oci-tile"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 3c-3 3-3 15 0 18M12 3c3 3 3 15 0 18M3 12h18"/></svg></div>
+        <span class="oci-pill">01 Brand</span>
+      </div>
+      <h3>Brand</h3>
+      <p>The 2026 Oceania Cruises brand guidelines and the logo files.</p>
+      <div class="oci-open">Open in Box <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </a>
+
+    <a class="oci-card" href="https://ncl.box.com/s/j6ol3eb8lqils1fetzcggn6e2p6u81jz" target="_blank" rel="noopener">
+      <div class="oci-rail"></div>
+      <div class="oci-card-top">
+        <div class="oci-tile teal"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+        <span class="oci-pill">02 Brochures</span>
+      </div>
+      <h3>Brochures &amp; Lookbooks</h3>
+      <p>2027 and 2028 Around the World, the 2027 to 2028 Double Launch, Tropics and Exotics 2026 to 2027, the Spanish branding brochure for LATAM, Your World Your Way Issue 4 and the Sonata lookbook.</p>
+      <div class="oci-open">Open in Box <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </a>
+
+    <a class="oci-card" href="https://ncl.box.com/s/s09lz5ljba0aqly414cpajjuek4p1u1a" target="_blank" rel="noopener">
+      <div class="oci-rail"></div>
+      <div class="oci-card-top">
+        <div class="oci-tile"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <span class="oci-pill">03 Decks</span>
+      </div>
+      <h3>Presentations</h3>
+      <p>Qu&eacute; es el lujo, the Spanish-language brand story, and the Brand Ambassador Program deck.</p>
+      <div class="oci-open">Open in Box <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </a>
+
+    <a class="oci-card" href="https://ncl.box.com/s/rf471f7r50a8ez7hujg79cqa4gglnnil" target="_blank" rel="noopener">
+      <div class="oci-rail"></div>
+      <div class="oci-card-top">
+        <div class="oci-tile teal"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 15h20l-3 5H5z"/><path d="M5 15V8h14v7"/><path d="M9 8V4h6v4"/></svg></div>
+        <span class="oci-pill">04 Fleet</span>
+      </div>
+      <h3>Ship Facts</h3>
+      <p>The Oceania Cruises fleet guide plus the new Oceania Aurelia deck plans and the Oceania Sonata deck plan spread. Ship-specific photo sets are under Creative Assets, Images.</p>
+      <div class="oci-open">Open in Box <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </a>
+
+    <a class="oci-card" href="https://ncl.box.com/s/gqxcz21f81uyhmze4n5nkdg2vm796nfw" target="_blank" rel="noopener">
+      <div class="oci-rail"></div>
+      <div class="oci-card-top">
+        <div class="oci-tile"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+        <span class="oci-pill">05 Creative</span>
+      </div>
+      <h3>Creative Assets &amp; Toolkits</h3>
+      <p>Current Campaigns (Caribbean Winter Escape, Solo Traveller Fares, Exceptional Savings, Joy of Traveling Well, Ultimate Exploration, Sell Five Sail Free, the 2028 and 2029 Collection of Voyages launch videos and season fact sheet, the Aurelia toolkit with banners, social tiles, videos, ship and suite images and inaugural season voyage maps, the Sonata toolkit with suite renderings, and destination toolkits for the Caribbean, Europe and Alaska), plus Images, Videos (now sorted into Dining Venues, Onboard Life, Finest Cuisine at Sea, destination sizzles and guest testimonials) and Virtual Backgrounds.</p>
+      <div class="oci-open">Open in Box <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </a>
+
+    <a class="oci-card" href="https://ncl.box.com/s/iiskuf6muhnprux9kxhvzy9ubsomk4fx" target="_blank" rel="noopener">
+      <div class="oci-rail"></div>
+      <div class="oci-card-top">
+        <div class="oci-tile teal"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><polyline points="8 14 11 17 16 12"/></svg></div>
+        <span class="oci-pill">06 Forms</span>
+      </div>
+      <h3>Forms</h3>
+      <p>Group contract request forms for Vista and Allura class, group requests and the ship tour request process.</p>
+      <div class="oci-open">Open in Box <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </a>
+
+  </div>
+
+  <div class="oci-footline">The Joy of Traveling Well<span>&reg;</span></div>
+</section>
+
+<!-- ============ ESCALATIONS ============ -->
+<section class="section brand-regent" id="escalations">
+  <div class="section-head">
+    <div>
+      <div class="section-eyebrow">Need a decision from the LATAM team?</div>
+      <h2 class="section-title">Escalations &amp; Exceptions</h2>
+    </div>
+  </div>
+  <div class="cards-grid cols-2">
+
+    <a class="content-card card-featured" href="https://wkf.ms/4gFtlNP" target="_blank" rel="noopener">
+      <div class="card-number">Submit</div>
+      <svg class="card-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 4h18l6 6v22H6z"/><polyline points="24,4 24,10 30,10"/><path d="M12 20l4 4 8-8"/></svg>
+      <div class="card-title">Submit an Escalation<br>or Exception Request</div>
+      <div class="card-desc">Rate or pricing exceptions, group requests and contracts, waitlists and upgrades, commission or payment issues, guest complaints, marketing or portal access, and booking servicing that has stalled. Pick the type and the form asks only for what that type needs. English and Spanish. / Excepciones de tarifa, grupos, listas de espera, comisiones, quejas de hu&eacute;spedes, acceso a portales y reservas detenidas. En ingl&eacute;s y espa&ntilde;ol.</div>
+      <div class="card-tags"><span class="tag">Both Brands</span><span class="tag">Espa&ntilde;ol</span><span class="tag">Same-day for urgent</span></div>
+      <div class="card-arrow">Open the form</div>
+    </a>
+
+    <div class="content-card" style="cursor:default;">
+      <div class="card-accent-line"></div>
+      <div class="card-number">First stop</div>
+      <svg class="card-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="8" width="30" height="20" rx="1"/><polyline points="3,8 18,20 33,8"/></svg>
+      <div class="card-title">Routine servicing goes<br>to Reservations first</div>
+      <div class="card-desc">Refunds, cancellations, name changes, documents, payments and invoices are handled fastest by the Reservations desks. Write to them first and use the escalation form only if the request stalls or needs an exception. / Reembolsos, cancelaciones, cambios de nombre, documentos y pagos: escriba primero a Reservaciones y use el formulario solo si la solicitud se detiene o requiere una excepci&oacute;n.</div>
+      <div class="card-tags">
+        <a class="tag" href="mailto:intlreservations@oceaniacruises.com" style="color:var(--regent-light);border-color:var(--regent);">Oceania: intlreservations@oceaniacruises.com</a>
+        <a class="tag" href="mailto:intlsales@rssc.com" style="color:var(--regent-light);border-color:var(--regent);">Regent: intlsales@rssc.com</a>
+      </div>
+      <div class="card-arrow" style="opacity:1;transform:none;color:var(--text-faint);">Include booking number, guest name and sail date</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ SHIP TOURS ============ -->
+<section class="section brand-regent" id="shiptours">
+  <div class="section-head">
+    <div>
+      <div class="section-eyebrow">Bring your agencies on board</div>
+      <h2 class="section-title">Ship Tours &amp; Onboard Events</h2>
+    </div>
+  </div>
+  <div class="cards-grid cols-3 tours-grid">
+
+    <div class="content-card card-featured">
+      <div class="card-number">Request</div>
+      <svg class="card-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 24h28l-4 6H8z"/><path d="M8 24V14h20v10"/><path d="M14 14V8h8v6"/><path d="M4 30c3 2 6 2 9 0s6-2 9 0 6 2 9 0"/></svg>
+      <a class="card-title stretch" href="https://wkf.ms/4rhm36G" target="_blank" rel="noopener">Request a Ship Tour,<br>Lunch, Dinner or Event</a>
+      <div class="card-desc">When a Regent or Oceania ship calls at a port in your market, request a visit for your agency group: ship tour, lunch, dinner, cocktail party or special event. One form per event; two groups on one day means two requests. Guest maximums, subject to approval: Oceania 50 lunch and 35 dinner, Regent 50 lunch and 30 dinner. Every tour is subject to Marine Operations approval. / Solicite una visita al barco, almuerzo, cena, c&oacute;ctel o evento especial para su grupo de agencias. Un formulario por evento. Toda visita est&aacute; sujeta a la aprobaci&oacute;n de Operaciones Marinas.</div>
+      <div class="card-tags"><span class="tag">Both Brands</span><span class="tag">Espa&ntilde;ol</span><span class="tag">Reply within 5 business days</span></div>
+      <div class="form-links">
+        <div class="form-links-label">Guest list and dietary forms / Formularios de invitados y dietas</div>
+        <div class="form-links-row"><strong>Oceania</strong><a href="https://ncl.app.box.com/s/iiskuf6muhnprux9kxhvzy9ubsomk4fx/file/1701369153286" target="_blank" rel="noopener">Visitor request (Excel)</a><a href="https://ncl.app.box.com/s/iiskuf6muhnprux9kxhvzy9ubsomk4fx/file/1701359294176" target="_blank" rel="noopener">Dietary sheet (Excel)</a></div>
+        <div class="form-links-row"><strong>Regent</strong><a href="https://ncl.app.box.com/s/9z3ku5wjkapzdn2cpm6svzibgye731zp/file/2456938417963" target="_blank" rel="noopener">Visitor request (PDF)</a><a href="https://ncl.app.box.com/s/9z3ku5wjkapzdn2cpm6svzibgye731zp/file/2545829106936" target="_blank" rel="noopener">Dietary sheet (Excel)</a></div>
+      </div>
+      <div class="card-arrow">Open the form</div>
+    </div>
+
+    <a class="content-card" href="https://claude.ai/artifact/XGJhHrB8E9RYpNyW1xNhcW" target="_blank" rel="noopener">
+      <div class="card-accent-line"></div>
+      <div class="card-number">Check first</div>
+      <svg class="card-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="7" width="28" height="25" rx="1"/><line x1="4" y1="14" x2="32" y2="14"/><line x1="11" y1="4" x2="11" y2="10"/><line x1="25" y1="4" x2="25" y2="10"/><path d="M11 22h5v5h-5z"/></svg>
+      <div class="card-title">Port Call Schedule<br>Q4 2026 to Q1 2027</div>
+      <div class="card-desc">Every requested ship visit in Latin American and Caribbean ports, by country and month, with pier, hours in port, its status, what was approved, the maximum guests and the date your final guest list is due. New requests need to reach Miami at least four weeks ahead. / Todas las visitas a bordo solicitadas, por pa&iacute;s y mes, con muelle, horario, estado, lo aprobado, el m&aacute;ximo de personas y la fecha l&iacute;mite de la lista de invitados.</div>
+      <div class="card-tags"><span class="tag">Both Brands</span><span class="tag">Espa&ntilde;ol</span><span class="tag">Guest list deadlines</span></div>
+      <div class="card-arrow">Open the schedule</div>
+    </a>
+
+    <a class="content-card" href="https://claude.ai/artifact/HkzzUfTvoMCSYwmfAEziem" target="_blank" rel="noopener">
+      <div class="card-accent-line"></div>
+      <div class="card-number">On the day</div>
+      <svg class="card-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 4h20v28H8z"/><line x1="8" y1="11" x2="28" y2="11"/><line x1="8" y1="18" x2="28" y2="18"/><line x1="8" y1="25" x2="28" y2="25"/><circle cx="13" cy="14.5" r="1.2"/><path d="M13 21.5v-2"/></svg>
+      <div class="card-title">Ship Tour Guide<br>for Every Ship</div>
+      <div class="card-desc">For GSAs hosting a visit without the LATAM team on board. Every Oceania and Regent ship has a walking route deck by deck, what to show and say at each stop, the suites worth seeing, answers to the questions advisors ask, and a checklist from guest list to follow-up. / Para los GSA que reciben una visita sin el equipo LATAM a bordo: recorrido por cubierta para cada barco, qu&eacute; mostrar y decir en cada parada, suites recomendadas, preguntas frecuentes y lista de control de la visita.</div>
+      <div class="card-tags"><span class="tag">Both Brands</span><span class="tag">Espa&ntilde;ol</span><span class="tag">14 Ships</span></div>
+      <div class="card-arrow">Open the guide</div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ============ BOTH BRANDS ============ -->
+<section class="section brand-shared" id="shared">
+  <div class="section-head">
+    <div>
+      <div class="section-eyebrow">Regent and Oceania</div>
+      <h2 class="section-title">Shared Resources</h2>
+    </div>
+  </div>
+  <div class="cards-grid cols-3">
+
+    <a class="content-card" href="https://ncl.box.com/s/ilpr8bdbhgp7f466pmy6aiuxys0wddc4" target="_blank" rel="noopener">
+      <div class="card-accent-line"></div>
+      <div class="card-number">Groups</div>
+      <svg class="card-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="4"/><circle cx="24" cy="12" r="4"/><path d="M3 30c0-6 4-9 9-9s9 3 9 9M15 30c0-6 4-9 9-9s9 3 9 9"/></svg>
+      <div class="card-title">Gu&iacute;a de<br>Grupos PCH</div>
+      <div class="card-desc">Gu&iacute;a de Coordinaci&oacute;n de Grupos, the Groups PCH deck, Q&amp;A de grupos, the purchased cocktail party form and the O&amp;R branded template in Spanish.</div>
+      <div class="card-tags"><span class="tag">Grupos</span><span class="tag">Espa&ntilde;ol</span><span class="tag">O&amp;R</span></div>
+      <div class="card-arrow">Open in Box</div>
+    </a>
+
+    <a class="content-card" href="https://ncl.box.com/s/7usu7fml05yq8jv0q92r0zihzo72k8cr" target="_blank" rel="noopener">
+      <div class="card-accent-line"></div>
+      <div class="card-number">Promotions</div>
+      <svg class="card-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 8h20v22H4z"/><path d="M24 12h8v18H24"/><line x1="9" y1="15" x2="19" y2="15"/><line x1="9" y1="20" x2="19" y2="20"/><line x1="9" y1="25" x2="15" y2="25"/></svg>
+      <div class="card-title">Promotional<br>Journal</div>
+      <div class="card-desc">The latest promotions journal for both brands with current offers and need dates.</div>
+      <div class="card-tags"><span class="tag">Latest issue</span><span class="tag">Promos</span><span class="tag">Espa&ntilde;ol</span></div>
+      <div class="card-arrow">Open in Box</div>
+    </a>
+
+    <a class="content-card" href="https://ncl.box.com/s/lz1acqz9l00u0uruu4stvinema2z4snj" target="_blank" rel="noopener">
+      <div class="card-accent-line"></div>
+      <div class="card-number">Virtuoso</div>
+      <svg class="card-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 3l4.5 9.5L33 14l-7.5 7 2 10.5L18 26.5 8.5 31.5l2-10.5L3 14l10.5-1.5z"/></svg>
+      <div class="card-title">Virtuoso<br>Resources</div>
+      <div class="card-desc">Virtuoso Voyages flyers for Regent and Oceania, the 2026 to 2027 amenity flyer, how to register for Virtuoso Voyages benefits and the GSA relationship call deck.</div>
+      <div class="card-tags"><span class="tag">Virtuoso</span><span class="tag">Amenities</span><span class="tag">Both Brands</span></div>
+      <div class="card-arrow">Open in Box</div>
+    </a>
+
+    <a class="content-card" href="https://ncl.box.com/s/8ebpo26glalme06pjohkx51k2axnlqsc" target="_blank" rel="noopener">
+      <div class="card-accent-line"></div>
+      <div class="card-number">Serandipians · Regent</div>
+      <svg class="card-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="6" width="30" height="24" rx="1"/><line x1="3" y1="13" x2="33" y2="13"/><line x1="3" y1="20" x2="33" y2="20"/><line x1="12" y1="6" x2="12" y2="30"/><line x1="22" y1="6" x2="22" y2="30"/></svg>
+      <div class="card-title">Serandipians<br>Resources</div>
+      <div class="card-desc">The Regent Serandipians sailing list: US$200 shipboard credit per suite on selected sailings, booked through a Serandipians member agency. / Lista de salidas Regent con US$200 de cr&eacute;dito a bordo por suite para agencias Serandipians.</div>
+      <div class="card-tags"><span class="tag">Regent</span><span class="tag">Amenities</span></div>
+      <div class="card-arrow">Open in Box</div>
+    </a>
+
+    <a class="content-card" href="https://claude.ai/artifact/YSuTvNAwskU87ecNQ4YwJC" target="_blank" rel="noopener">
+      <div class="card-accent-line"></div>
+      <div class="card-number">Serandipians · Directory</div>
+      <svg class="card-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="15" cy="15" r="9"/><line x1="22" y1="22" x2="32" y2="32"/></svg>
+      <div class="card-title">Serandipians<br>Agency Directory</div>
+      <div class="card-desc">Every Serandipians and Takumians member agency in Latin America, with its champion and the GSA that handles its bookings. Search by agency, champion or city. / Todas las agencias Serandipians y Takumians de Latinoam&eacute;rica, con su contacto y el GSA que gestiona sus reservas.</div>
+      <div class="card-tags"><span class="tag">92 agencies</span><span class="tag">By market</span></div>
+      <div class="card-arrow">Open the directory</div>
+    </a>
+
+    <a class="content-card" href="https://ncl.box.com/s/7e6l56br202figpcp5lj1mdab2k9zq6v" target="_blank" rel="noopener">
+      <div class="card-accent-line"></div>
+      <div class="card-number">Regent</div>
+      <svg class="card-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="28" height="28" rx="1"/><line x1="4" y1="13" x2="32" y2="13"/><line x1="4" y1="22" x2="32" y2="22"/><line x1="13" y1="4" x2="13" y2="32"/><line x1="22" y1="4" x2="22" y2="32"/></svg>
+      <div class="card-title">Regent<br>Combinability Grid</div>
+      <div class="card-desc">Which Regent promotions and offers stack with which. Updated February 2026. Internal and travel partner use only.</div>
+      <div class="card-tags"><span class="tag">PDF</span><span class="tag">Offers</span><span class="tag">Partner Only</span></div>
+      <div class="card-arrow">Open in Box</div>
+    </a>
+
+    <a class="content-card" href="https://ncl.box.com/s/p1io1p6eto52alodikkfcyhrcnhry642" target="_blank" rel="noopener">
+      <div class="card-accent-line"></div>
+      <div class="card-number">Oceania</div>
+      <svg class="card-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="28" height="28" rx="1"/><line x1="4" y1="13" x2="32" y2="13"/><line x1="4" y1="22" x2="32" y2="22"/><line x1="13" y1="4" x2="13" y2="32"/><line x1="22" y1="4" x2="22" y2="32"/></svg>
+      <div class="card-title">Oceania<br>Combinability Grid</div>
+      <div class="card-desc">Which Oceania promotions and offers can be combined, including Your World Included and OLife. Internal and travel partner use only.</div>
+      <div class="card-tags"><span class="tag">PDF</span><span class="tag">Offers</span><span class="tag">Partner Only</span></div>
+      <div class="card-arrow">Open in Box</div>
+    </a>
+
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="hub-footer">
+  <div class="footer-brand"><strong>Regent Seven Seas Cruises® &nbsp;·&nbsp; Oceania Cruises®</strong> &nbsp;·&nbsp; LATAM Sales</div>
+  <div class="color-dots">
+    <div class="color-dot" style="background:#111111; border: 1px solid rgba(255,255,255,0.2);"></div>
+    <div class="color-dot" style="background:#51748B;"></div>
+    <div class="color-dot" style="background:#001D32; border: 1px solid rgba(255,255,255,0.2);"></div>
+    <div class="color-dot" style="background:#A36A36;"></div>
+  </div>
+  <div class="footer-note">Content lives in Latam GSA Box &nbsp;·&nbsp; Updated November 1, 2026</div>
+</footer>
+
+
+
+
+</body></html>
