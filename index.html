@@ -96,6 +96,9 @@
   }
   .intro-body { font-size: 14px; font-weight: 300; line-height: 1.75; color: var(--text-dim); letter-spacing: 0.02em; }
   .intro-body + .intro-body { margin-top: 10px; }
+  .intro-guide { display:inline-flex; align-items:center; gap:14px; margin-top:6px; padding:12px 18px 12px 16px; border:1px solid var(--regent); border-left:3px solid var(--regent-light); font-size:12px; font-weight:400; letter-spacing:0.06em; color:var(--text-dim); transition: background 0.3s, color 0.3s; }
+  .intro-guide strong { font-weight:500; letter-spacing:0.18em; text-transform:uppercase; font-size:10px; color:var(--regent-light); }
+  .intro-guide:hover { background: rgba(81,116,139,0.18); color: var(--white); }
   .intro-stats { display: flex; gap: 48px; padding-top: 8px; flex-shrink: 0; }
   .stat { text-align: right; }
   .stat-number { font-family: var(--font-serif); font-size: 40px; font-weight: 300; line-height: 1; font-variant-numeric: tabular-nums; }
@@ -255,6 +258,18 @@
   .brand-new .content-card.oci .card-number { color:#DDB877; }
   .brand-new .card-featured { background: var(--accent); }
   .brand-new .card-featured .card-number { color: rgba(255,255,255,.8); }
+  /* Brand groups inside New This Month */
+  .new-group-head { display:flex; align-items:center; justify-content:space-between; gap:12px 24px; flex-wrap:wrap; padding:22px 80px; border-top:1px solid var(--line); border-left:4px solid var(--regent); background:rgba(81,116,139,0.16); }
+  .new-group-head .ng-eyebrow { font-size:10px; font-weight:500; letter-spacing:.22em; text-transform:uppercase; color:var(--regent-light); margin-bottom:6px; }
+  .new-group-head .ng-brand { font-family:var(--font-serif); font-size:clamp(24px,2.6vw,32px); font-weight:400; letter-spacing:.03em; line-height:1.1; }
+  .new-group-head .ng-brand .reg { font-size:.45em; vertical-align:super; margin-left:3px; color:var(--text-dim); }
+  .new-group-head .ng-count { font-size:10px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:#111; background:var(--regent-light); padding:5px 10px; }
+  .new-group-head.oci { margin-top:48px; border-left-color:#A36A36; background:#001D32; }
+  .new-group-head.oci .ng-eyebrow { color:#DDB877; }
+  .new-group-head.oci .ng-brand { font-family:'EB Garamond', Garamond, Georgia, serif; font-weight:500; }
+  .new-group-head.oci .ng-brand .reg { color:#DDB877; }
+  .new-group-head.oci .ng-count { background:#A36A36; color:#fff; }
+  @media (max-width: 900px) { .new-group-head { padding-left:28px; padding-right:28px; } }
 
   /* ---------- Footer ---------- */
   .hub-footer {
@@ -296,6 +311,7 @@
 <div class="hub-intro">
   <div class="intro-text">
     <div class="intro-headline">Brochures, creative, ship facts and forms for both brands, always the current version.</div>
+    <a class="intro-guide" href="https://claude.ai/artifact/P89YxUEf1r59rBjCBrU3ei" target="_blank" rel="noopener"><strong>Guide</strong><span>New here? For directions, click the Guide. / Para instrucciones, abra la Gu&iacute;a.</span></a>
   </div>
   <div class="intro-stats">
     <div class="stat"><div class="stat-number">2</div><div class="stat-label">Brands</div></div>
@@ -312,16 +328,24 @@
   <a href="#escalations">Escalations</a>
   <a href="#shiptours">Ship Tours</a>
   <a href="#shared">Both Brands</a>
+  <a href="https://claude.ai/artifact/P89YxUEf1r59rBjCBrU3ei" target="_blank" rel="noopener">Guide</a>
 </nav>
 
 <!-- ============ NEW THIS MONTH ============ -->
 <section class="section brand-new" id="new">
   <div class="section-head">
     <div>
-      <div class="section-eyebrow">Updated November 4, 2026</div>
+      <div class="section-eyebrow">Updated November 5, 2026</div>
       <h2 class="section-title">New This Month<span class="new-badge">14 items</span></h2>
     </div>
     <p class="section-note">What arrived from Regent and Oceania trade marketing since the September refresh. Offer dates are the brands' own; check the combinability grids before quoting. / Lo que llegó de marketing de ambas marcas desde la actualización de septiembre.</p>
+  </div>
+  <div class="new-group-head" id="new-regent">
+    <div>
+      <div class="ng-eyebrow">New from</div>
+      <div class="ng-brand">Regent Seven Seas Cruises<span class="reg">&reg;</span></div>
+    </div>
+    <span class="ng-count">8 items</span>
   </div>
   <div class="cards-grid cols-3">
 
@@ -389,6 +413,15 @@
       <div class="card-tags"><span class="tag">PDF</span><span class="tag">Sales Tools</span></div>
       <div class="card-arrow">Open Creative Assets</div>
     </a>
+  </div>
+  <div class="new-group-head oci" id="new-oceania">
+    <div>
+      <div class="ng-eyebrow">New from</div>
+      <div class="ng-brand">Oceania Cruises<span class="reg">&reg;</span></div>
+    </div>
+    <span class="ng-count">6 items</span>
+  </div>
+  <div class="cards-grid cols-3">
     <a class="content-card card-featured oci" href="https://ncl.box.com/s/gqxcz21f81uyhmze4n5nkdg2vm796nfw" target="_blank" rel="noopener">
 
       <div class="card-number">Oceania · November 4 to 17</div>
@@ -618,7 +651,7 @@
       <div class="card-number">Submit</div>
       <svg class="card-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 4h18l6 6v22H6z"/><polyline points="24,4 24,10 30,10"/><path d="M12 20l4 4 8-8"/></svg>
       <div class="card-title">Submit an Escalation<br>or Exception Request</div>
-      <div class="card-desc">Rate or pricing exceptions, group requests and contracts, waitlists and upgrades, commission or payment issues, guest complaints, marketing or portal access, and booking servicing that has stalled. Pick the type and the form asks only for what that type needs. English and Spanish. / Excepciones de tarifa, grupos, listas de espera, comisiones, quejas de hu&eacute;spedes, acceso a portales y reservas detenidas. En ingl&eacute;s y espa&ntilde;ol.</div>
+      <div class="card-desc">Rate or pricing exceptions, group requests and contracts, waitlists and upgrades, commission or payment issues, onboard or pre cruise guest complaints, marketing or portal access, and booking servicing that has stalled. Pick the type and the form asks only for what that type needs. English and Spanish. / Excepciones de tarifa, grupos, listas de espera, comisiones, quejas de hu&eacute;spedes, acceso a portales y reservas detenidas. En ingl&eacute;s y espa&ntilde;ol.</div>
       <div class="card-tags"><span class="tag">Both Brands</span><span class="tag">Espa&ntilde;ol</span><span class="tag">Same-day for urgent</span></div>
       <div class="card-arrow">Open the form</div>
     </a>
@@ -627,11 +660,13 @@
       <div class="card-accent-line"></div>
       <div class="card-number">First stop</div>
       <svg class="card-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="8" width="30" height="20" rx="1"/><polyline points="3,8 18,20 33,8"/></svg>
-      <div class="card-title">Routine servicing goes<br>to Reservations first</div>
-      <div class="card-desc">Refunds, cancellations, name changes, documents, payments and invoices are handled fastest by the Reservations desks. Write to them first and use the escalation form only if the request stalls or needs an exception. / Reembolsos, cancelaciones, cambios de nombre, documentos y pagos: escriba primero a Reservaciones y use el formulario solo si la solicitud se detiene o requiere una excepci&oacute;n.</div>
+      <div class="card-title">Routine servicing goes<br>to Reservations, complaints<br>to Guest Relations</div>
+      <div class="card-desc">Refunds, cancellations, name changes, documents, payments and invoices are handled fastest by the Reservations desks. Write to them first and use the escalation form only if the request stalls or needs an exception. Post cruise guest complaints and cancellation refund complaints are not escalations: send them directly to the Guest Relations team of the brand. / Reembolsos, cancelaciones, cambios de nombre, documentos y pagos: escriba primero a Reservaciones y use el formulario solo si la solicitud se detiene o requiere una excepci&oacute;n. Las quejas de hu&eacute;spedes posteriores al crucero y las quejas por reembolso de cancelaci&oacute;n van directamente a Guest Relations de cada marca.</div>
       <div class="card-tags">
-        <a class="tag" href="mailto:intlreservations@oceaniacruises.com" style="color:var(--regent-light);border-color:var(--regent);">Oceania: intlreservations@oceaniacruises.com</a>
-        <a class="tag" href="mailto:intlsales@rssc.com" style="color:var(--regent-light);border-color:var(--regent);">Regent: intlsales@rssc.com</a>
+        <a class="tag" href="mailto:intlreservations@oceaniacruises.com" style="color:var(--regent-light);border-color:var(--regent);">Oceania Reservations: intlreservations@oceaniacruises.com</a>
+        <a class="tag" href="mailto:intlsales@rssc.com" style="color:var(--regent-light);border-color:var(--regent);">Regent Reservations: intlsales@rssc.com</a>
+        <a class="tag" href="mailto:GuestRelationsOCI@oceaniacruises.com" style="color:var(--regent-light);border-color:var(--regent);">Oceania Guest Relations: GuestRelationsOCI@oceaniacruises.com</a>
+        <a class="tag" href="mailto:GuestRelations@rssc.com" style="color:var(--regent-light);border-color:var(--regent);">Regent Guest Relations: GuestRelations@rssc.com</a>
       </div>
       <div class="card-arrow" style="opacity:1;transform:none;color:var(--text-faint);">Include booking number, guest name and sail date</div>
     </div>
@@ -716,6 +751,16 @@
       <div class="card-arrow">Open in Box</div>
     </a>
 
+    <a class="content-card" href="https://claude.ai/artifact/N74Mb67SxCEEmXwpAXiaTN" target="_blank" rel="noopener">
+      <div class="card-accent-line"></div>
+      <div class="card-number">Promotions · Planner</div>
+      <svg class="card-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="7" width="28" height="25" rx="1"/><line x1="4" y1="14" x2="32" y2="14"/><line x1="11" y1="4" x2="11" y2="10"/><line x1="25" y1="4" x2="25" y2="10"/><line x1="9" y1="20" x2="22" y2="20"/><line x1="14" y1="26" x2="28" y2="26"/></svg>
+      <div class="card-title">GSA Promo<br>Planner</div>
+      <div class="card-desc">Every Oceania and Regent offer for LATAM in one place: what is closing and opening soon, a booking window calendar, the full promo log with terms, sailings with the offers on them, and how competitor promos compare. Seen a competitor offer that is missing? Send it from the Share competitor intel tab. English, Spanish and Portuguese. / Todas las promociones de Oceania y Regent para LATAM: calendario, condiciones, salidas y comparaci&oacute;n con la competencia. Comparta ofertas de la competencia desde la pesta&ntilde;a correspondiente.</div>
+      <div class="card-tags"><span class="tag">Both Brands</span><span class="tag">Calendar</span><span class="tag">Competitors</span></div>
+      <div class="card-arrow">Open the planner</div>
+    </a>
+
     <a class="content-card" href="https://ncl.box.com/s/lz1acqz9l00u0uruu4stvinema2z4snj" target="_blank" rel="noopener">
       <div class="card-accent-line"></div>
       <div class="card-number">Virtuoso</div>
@@ -779,10 +824,6 @@
     <div class="color-dot" style="background:#001D32; border: 1px solid rgba(255,255,255,0.2);"></div>
     <div class="color-dot" style="background:#A36A36;"></div>
   </div>
-  <div class="footer-note">Content lives in Latam GSA Box &nbsp;·&nbsp; Updated November 4, 2026</div>
+  <div class="footer-note">Content lives in Latam GSA Box &nbsp;·&nbsp; Updated November 5, 2026</div>
 </footer>
-
-
-
-
 </body></html>
